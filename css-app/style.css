@@ -1,0 +1,36 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  background: #fff;
+}
+
+h1,
+h2,
+h3 {
+  font-family: "Outfit", sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+}
+
+button {
+  font-family: "Outfit", sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+.app {
+  position: relative;
+  height: 100vh;
+}
