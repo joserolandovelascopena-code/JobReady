@@ -1,6 +1,6 @@
 JobReady/
 │
-├── frontend/
+├── docs/
 │ ├── index.html ← Página principal (APP MAIN)
 │ ├── offline.html ← Página offline
 │ │
