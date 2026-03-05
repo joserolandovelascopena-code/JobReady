@@ -83,6 +83,10 @@ Diagrama de estructura de directorios:
     ├── project-docs/
     │  └── diagramas/
     │
+    ├── node_modules/
+    ├── .gitignore
+    ├── package.json
+    │
     └── README.txt
 
 
