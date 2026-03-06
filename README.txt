@@ -97,7 +97,6 @@ Diagrama de estructura de directorios:
     │  └── diagramas/
     │
     ├── .gitignore
-    ├── package.json
     │
     └── README.txt
 
