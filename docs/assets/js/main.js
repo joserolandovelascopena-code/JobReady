@@ -1,5 +1,5 @@
 /* main.js ======================== */
-import "./app.js";
+import "./server.js";
 import "./modals.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
