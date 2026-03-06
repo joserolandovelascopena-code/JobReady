@@ -2,10 +2,8 @@ const express = require("express");
 const cors = require("cors");
 require("dotenv").config();
 
-const authRoutes = require("./routes/authRoutes");
-const interviewRoutes = require("./routes/interviewRoutes");
-const courseRoutes = require("./routes/courseRoutes");
 const certificateRoutes = require("./routes/certificateRoutes");
+const cvRoutes = require("./routes/cvRoutes");
 
 const app = express();
 
@@ -14,12 +12,11 @@ app.use(express.json());
 
 const PORT = process.env.PORT || 3000;
 
-// Rutas API
-app.use("/api/auth", authRoutes);
-app.use("/api/interviews", interviewRoutes);
-app.use("/api/courses", courseRoutes);
+// Rutas de la API
 app.use("/api/certificates", certificateRoutes);
+app.use("/api/cv", cvRoutes);
 
+// Ruta de prueba
 app.get("/", (req, res) => {
   res.send("API JobReady funcionando");
 });
