@@ -1,3 +1,14 @@
+Nombre del proyecto: JobReady (Sistema de Preparación Técnica y Simulación Laboral)
+Nombre del estudiante: José Rolando Velasco Peña
+Fecha: 5 de mar. de 26
+Descripción breve del sistema: 
+El sistema es una plataforma de preparación técnica orientada a jóvenes bachilleres y
+recién graduados que desean ingresar al sector laboral. Su objetivo es brindarles herramientas prácticas
+para afrontar procesos de selección, como simulaciones de entrevistas de trabajo y orientación para diseñar
+un currículum vitae profesional. De esta manera, busca fortalecer su confianza, mejorar sus habilidades 
+y facilitar su desenvolvimiento en el ámbito laboral.
+
+
 Diagrama de estructura de directorios:
 
     JobReady/
@@ -76,14 +87,15 @@ Diagrama de estructura de directorios:
     │  │  │   ├── authMiddleware.js
     │  │  │   └── roleMiddleware.js
     │  │  │
+    │  │  │
     │  │  └── app.js
-    │  │
+    │  ├── node_modules/
+    │  │ 
     │  └── package.json
     │
     ├── project-docs/
     │  └── diagramas/
     │
-    ├── node_modules/
     ├── .gitignore
     ├── package.json
     │
