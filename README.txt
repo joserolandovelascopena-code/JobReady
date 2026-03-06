@@ -11,153 +11,92 @@ y facilitar su desenvolvimiento en el ámbito laboral.
 
 Diagrama de estructura de directorios:
 
-    JobReady/
-    │
-    ├── docs/
-    │  ├── index.html 
-    │  ├── offline.html 
-    │  │
-    │  ├── assets/
-    │  │  ├── css/
-    │  │  │  └── app-css
-    │  │  │     └── styles.css
-    │  │  │
-    │  │  ├── js/
-    │  │  │  ├── app.js ← JS principal
-    │  │  │  ├── router.js 
-    │  │  │  │
-    │  │  │  ├── services/
-    │  │  │  │  ├── api.js
-    │  │  │  │  ├── authService.js
-    │  │  │  │  ├── interviewService.js
-    │  │  │  │  └── certificateService.js
-    │  │  │  │
-    │  │  │  └── utils/
-    │  │  │     └── helpers.js
-    │  │  │
-    │  │  └── icons/
-    │  │     ├── Favicon.png
-    │  │     ├── icon-192.png
-    │  │     └── icon-512.png
-    │  │
-    │  ├── pages/
-    │  │  ├── auth/
-    │  │  │   ├── login.html
-    │  │  │   ├── signup.html
-    │  │  │   ├── reset-password.html
-    │  │  │   └── recover.html
-    │  │  │
-    │  │  │    
-    │  │  ├── home.html
-    │  │  ├── interviews.html
-    │  │  ├── cv-generator.html
-    │  │  ├── courses.html
-    │  │  ├── progress.html
-    │  │  ├── certificates.html
-    │  │  └── admin.html
-    │  │
-    │  ├── manifest.json
-    │  └── service-worker.js
-    │
-    ├── backend/
-    │  ├── src/
-    │  │  ├── config/
-    │  │  │   └── db.js
-    │  │  │
-    │  │  ├── controllers/
-    │  │  │   ├── authController.js
-    │  │  │   ├── interviewController.js
-    │  │  │   ├── courseController.js
-    │  │  │   ├── certificateController.js
-    │  │  │   └── adminController.js
-    │  │  │
-    │  │  ├── routes/
-    │  │  │   ├── authRoutes.js
-    │  │  │   ├── interviewRoutes.js
-    │  │  │   ├── courseRoutes.js
-    │  │  │   ├── certificateRoutes.js
-    │  │  │   └── adminRoutes.js
-    │  │  │
-    │  │  ├── services/
-    │  │  │   ├── certificateService.js
-    │  │  │   ├── evaluationService.js
-    │  │  │   └── pdfService.js
-    │  │  │
-    │  │  ├── middleware/
-    │  │  │   ├── authMiddleware.js
-    │  │  │   └── roleMiddleware.js
-    │  │  │
-    │  │  │
-    │  │  └── app.js
-    │  ├── node_modules/
-    │  │ 
-    │  └── package.json
-    │
-    ├── project-docs/
-    │  └── diagramas/
-    │
-    ├── .gitignore
-    │
-    └── README.txt
-
-
-
-
-    JobReady/
-    │
-    ├── docs/
-    │  ├── index.html 
-    │  ├── offline.html 
-    │  │
-    │  ├── assets/
-    │  │  ├── css/
-    │  │  │  └── app-css
-    │  │  │     └── styles.css
-    │  │  │
-    │  │  ├── js/
-    │  │  │  ├── app.js ← JS principal
-    │  │  │  ├── 
-    │  │  │  │
-    │  │  │  ├── services/
-    │  │  │  │
-    │  │  │  └── utils/
-    │  │  │
-    │  │  └── icons/
-    │  │     ├── Favicon.png
-    │  │     ├── icon-192.png
-    │  │     └── icon-512.png
-    │  │
-    │  ├── pages/
-    │  │  ├── auth/
-    │  │  │   ├── login.html
-    │  │  │   ├── signup.html
-    │  │  │   ├── reset-password.html
-    │  │  │   └── recover.html
-    │  │  │
-    │  │  │    
-    │  │  └── home.html   
-    │  │
-    │  ├── manifest.json
-    │  └── service-worker.js
-    │
-    ├── backend/
-    │  ├── src/
-    │  │  ├── config/
-    │  │  │   └── db.js
-    │  │  │
-    │  │  ├── controllers/
-    │  │  │
-    │  │  ├── routes/
-    │  │  │
-    │  │  ├── services/
-    │  │  │
-    │  │  ├── middleware/
-    │  │  │
-    │  │  └── app.js
-    │  │
-    │  └── package.json
-    │
-    ├── project-docs/
-    │  └── diagramas/
-    │
-    └── README.txt
+JobReady/
+│
+├── docs/                     # PWA (Frontend)
+│  │
+│  ├── index.html
+│  ├── offline.html
+│  │
+│  ├── assets/
+│  │  │
+│  │  ├── css/
+│  │  │   └── styles.css
+│  │  │
+│  │  ├── js/
+│  │  │  │
+│  │  │  ├── app.js
+│  │  │  ├── router.js
+│  │  │  │
+│  │  │  ├── config/
+│  │  │  │   └── supabase.js      ← conexión Supabase
+│  │  │  │
+│  │  │  ├── services/
+│  │  │  │  │
+│  │  │  │  ├── authService.js     ← login / registro
+│  │  │  │  ├── userService.js     ← perfil usuario
+│  │  │  │  ├── interviewService.js
+│  │  │  │  ├── courseService.js
+│  │  │  │  ├── progressService.js
+│  │  │  │  └── certificateService.js
+│  │  │  │
+│  │  │  └── utils/
+│  │  │      └── helpers.js
+│  │  │
+│  │  └── icons/
+│  │
+│  ├── pages/
+│  │  │
+│  │  ├── auth/
+│  │  │   ├── login.html
+│  │  │   ├── signup.html
+│  │  │   ├── reset-password.html
+│  │  │   └── recover.html
+│  │  │
+│  │  ├── home.html
+│  │  ├── interviews.html
+│  │  ├── cv-generator.html
+│  │  ├── courses.html
+│  │  ├── progress.html
+│  │  ├── certificates.html
+│  │  └── admin.html
+│  │
+│  ├── manifest.json
+│  └── service-worker.js
+│
+│
+├── backend/                 # API Node.js (solo lógica especial)
+│  │
+│  ├── src/
+│  │  │
+│  │  ├── config/
+│  │  │   └── supabaseClient.js
+│  │  │
+│  │  ├── controllers/
+│  │  │   │
+│  │  │   ├── certificateController.js
+│  │  │   └── cvController.js
+│  │  │
+│  │  ├── services/
+│  │  │   │
+│  │  │   ├── pdfService.js
+│  │  │   ├── certificateService.js
+│  │  │   └── cvService.js
+│  │  │
+│  │  ├── routes/
+│  │  │   │
+│  │  │   ├── certificateRoutes.js
+│  │  │   └── cvRoutes.js
+│  │  │
+│  │  └── server.js
+│  │
+│  ├── node_modules/
+│  │
+│  └── package.json
+│
+│
+├── project-docs/
+│  └── diagramas/
+│
+├── .gitignore
+└── README.txt
