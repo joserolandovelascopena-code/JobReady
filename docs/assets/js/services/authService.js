@@ -1,10 +1,10 @@
 import { supabase } from "../config/supabase.js";
 
-//SIGN UP
+// SIGN UP
 export async function signup(fullName, email, password) {
   const { data, error } = await supabase.auth.signUp({
-    email: email,
-    password: password,
+    email,
+    password,
     options: {
       emailRedirectTo:
         "https://joserolandovelascopena-code.github.io/JobReady/pages/auth/verify.html",
@@ -15,9 +15,20 @@ export async function signup(fullName, email, password) {
     },
   });
 
-  if (error) throw error;
+  if (error) {
+    console.error("Signup error:", error.message);
+    throw error;
+  }
 
-  return data.user;
+  return data?.user;
+}
+
+export async function loginGoogle() {
+  const { data, error } = await supabase.auth.signInWithOAuth({
+    provider: "google",
+  });
+
+  if (error) throw error;
 }
 
 export async function login(email, password) {

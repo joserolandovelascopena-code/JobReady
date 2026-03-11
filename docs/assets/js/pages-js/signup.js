@@ -1,4 +1,21 @@
-import { signup } from "../services/authService.js";
+import { supabase } from "../config/supabase.js";
+import { signup, loginGoogle } from "../services/authService.js";
+
+async function checkSession() {
+  const { data } = await supabase.auth.getSession();
+
+  if (data.session) {
+    window.location.href = "/index.html";
+  }
+}
+
+checkSession();
+
+supabase.auth.onAuthStateChange((event, session) => {
+  if (session) {
+    window.location.href = "/index.html";
+  }
+});
 
 const inputsSignup = document.querySelectorAll(".input-group");
 const msg = document.querySelector(".menssages");
@@ -20,28 +37,49 @@ function validateContainer(container) {
   const value = input.value.trim();
   const type = input.type;
 
+  // limpiar mensaje primero
+  msg.classList.remove("active");
+
   if (!value) {
     setError(container);
+    msg.textContent = "Este campo es obligatorio";
+    msg.classList.add("active");
     return false;
   }
+
   if (type === "text") {
     if (value.length < 3) {
       setError(container);
+      msg.textContent = "El nombre debe tener al menos 3 caracteres.";
+      msg.classList.add("active");
       return false;
     }
   }
 
   if (type === "email") {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(value)) {
+    const regexEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+    if (!regexEmail.test(value)) {
       setError(container);
+      msg.textContent =
+        "Por favor ingresa un correo válido (ejemplo@dominio.com)";
+      msg.classList.add("active");
       return false;
     }
   }
 
   if (type === "password") {
-    if (value.length < 8) {
+    let mensajes = [];
+
+    if (value.length < 8) mensajes.push("mínimo 8 caracteres");
+    if (!/[A-Z]/.test(value)) mensajes.push("una mayúscula");
+    if (!/[0-9]/.test(value)) mensajes.push("un número");
+    if (!/[!@#$%^&*]/.test(value)) mensajes.push("un carácter especial");
+
+    if (mensajes.length > 0) {
       setError(container);
+      msg.textContent = "Falta: " + mensajes.join(", ");
+      msg.classList.add("active");
       return false;
     }
   }
@@ -49,6 +87,7 @@ function validateContainer(container) {
   setSuccess(container);
   return true;
 }
+
 inputsSignup.forEach((container) => {
   const input = container.querySelector("input");
 
@@ -62,7 +101,11 @@ document.getElementById("signupBtn").onclick = async () => {
 
   inputsSignup.forEach((container) => {
     const valid = validateContainer(container);
-    if (!valid) hasError = true;
+
+    if (!valid) {
+      container.querySelector("input").focus();
+      hasError = true;
+    }
   });
 
   if (hasError) {
@@ -99,6 +142,10 @@ document.getElementById("signupBtn").onclick = async () => {
     msg.textContent = e.message;
     msg.classList.add("active");
   }
+};
+
+document.querySelector(".googleProviders").onclick = () => {
+  loginGoogle();
 };
 
 document.querySelector(".form").addEventListener("submit", function (e) {
