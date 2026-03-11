@@ -5,7 +5,7 @@ async function checkSession() {
   const { data } = await supabase.auth.getSession();
 
   if (data.session) {
-    window.location.href = "/index.html";
+    window.location.href = "/JobReady/index.html";
   }
 }
 
@@ -13,7 +13,7 @@ checkSession();
 
 supabase.auth.onAuthStateChange((event, session) => {
   if (session) {
-    window.location.href = "/index.html";
+    window.location.href = "/JobReady/index.html";
   }
 });
 
