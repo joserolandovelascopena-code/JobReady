@@ -24,10 +24,11 @@ export async function signup(fullName, email, password) {
 }
 
 export async function loginGoogle() {
+  const appBase = "/JobReady";
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider: "google",
     options: {
-      redirectTo: window.location.origin,
+      redirectTo: `${window.location.origin}${appBase}/index.html`,
     },
   });
 
@@ -45,4 +46,25 @@ export async function login(email, password) {
   }
 
   return data.user;
+}
+
+export async function logout() {
+  await supabase.auth.signOut();
+  window.location.href = "./pages/auth/login.html";
+}
+
+export async function protectRoute() {
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) {
+    window.location.href = "./pages/auth/login.html";
+    return;
+  }
+
+  if (!user.email_confirmed_at) {
+    await supabase.auth.signOut();
+    window.location.href = "./pages/auth/login.html";
+  }
 }
